@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        comida = (EditText) findViewById(R.id.editText);
+        comida = (EditText) findViewById(R.id.campo);
         button = (Button) findViewById(R.id.buttonCadastrar);
         apagar = (Button) findViewById(R.id.buttonApagar);
         lista = (TextView) findViewById(R.id.lista);
@@ -32,15 +32,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String nomeC = comida.getText().toString();
-                String cadastros = lista.getText().toString() +"\n"+nomeC;
 
 
-
-                if (){
+                if (!nomeC.equals("")){
+                    String cadastros = lista.getText().toString() +"\n"+nomeC;
                     Toast.makeText(MainActivity.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                    lista.setText(cadastros);
+                    comida.setText("");
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Erro!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        apagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!lista.getText().equals("")){
+                    lista.setText("");
+                    Toast.makeText(MainActivity.this, "Apagado com Sucesso!!!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "A lista está vazia!!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
